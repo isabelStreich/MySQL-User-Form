@@ -1,0 +1,20 @@
+{
+    "name": "programmation-web-3",
+    "version": "1.0.0",
+    "description": "420-W12-SU - Programmation Web 3",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "Martin Vachon",
+    "license": "ISC",
+    "devDependencies": {
+        "express": "^4.17.1",
+        "open": "^7.0.1"
+    },
+    "dependencies": {},
+    "repository": {
+        "type": "git",
+        "url": "https://martinvachon@bitbucket.org/collegeisi/programmation-web-3.git"
+    }
+}
