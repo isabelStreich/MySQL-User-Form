@@ -1,12 +1,9 @@
-<?php
-
-session_start();
+<?php session_start();
 ?>
 <!DOCTYPE html>
 <html>
 
 <head>
-
 </head>
 
 <body>
@@ -83,8 +80,6 @@ session_start();
         </form>
     </div>
     </div>
-
-
 </body>
 
 </html>
