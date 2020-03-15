@@ -1,18 +1,21 @@
 <!-- LOGIN.PHP -->
 <?php session_start();
-$userName = 'admin@qqch.com';
-$password = 'admin';
+// $userName = 'admin@qqch.com';
+// $password = 'admin';
 //$hash = password_hash($password);
 if (isset($_POST['userName']) and isset($_POST['password'])) {
     $_SESSION['userName'] = $_POST['userName'];
     $_SESSION['password'] = $_POST['password'];
-
     header('Location: index.php');
 
     // if (password_verify($password, $hash)) {
 //     echo 'Password is valid!';
     // } else {
 //     echo 'Invalid password.';
+
+    session_start();
+    // Store Session Data
+$_SESSION['login_user'] = $username;  // Initializing Session with value of PHP Variable
 }?>
 <!DOCTYPE html>
 <html>
