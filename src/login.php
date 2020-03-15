@@ -8,6 +8,7 @@
 <head>
     <?php include 'include/jumbotron.php'; ?>
     <?php include_once 'include/bootstrapLinkCss.php'; ?>
+
 </head>
 
 <body>
