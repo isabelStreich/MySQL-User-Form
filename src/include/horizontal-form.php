@@ -5,7 +5,7 @@
     <div class="form-group row">
         <label name="userName" for="inputEmail3" class="col-sm-2 col-form-label">Username</label>
         <div class="col-sm-10">
-            <input type="email" class="form-control" id="inputEmail3">
+            <input type="text" class="form-control" id="inputEmail3">
         </div>
     </div>
     <div class="form-group row">
