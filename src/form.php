@@ -59,7 +59,6 @@ $formFields = [
 function parseSingleValue($field)
 {
     $value = '';
-
     if (isset($field['values']) and isset($field['values'][0])) {
         $value = $field['values'][0];
     }
@@ -80,7 +79,6 @@ function writeInvalidMessage($field)
         echo '<div class="invalid-feedback">'.$field['errorMessage'].'</div>';
     }
 }
-
 function writeFormRow($id, $label, $fieldString, $field)
 {
     echo '<div class="form-group row">';
@@ -91,7 +89,6 @@ function writeFormRow($id, $label, $fieldString, $field)
     echo '  </div>';
     echo '</div>';
 }
-
 function showResult($formFields)
 {
     foreach ($formFields as $field) {
@@ -105,12 +102,10 @@ function showResult($formFields)
         echo '</li>';
     }
 }
-
 // Détecte si le formulaire a été soumis
 if (isset($_POST['submit'])) {
     foreach ($formFields as $name => $field) {
         $nameWithoutBracket = rtrim($name, '[]');
-
         if (isset($_POST[$nameWithoutBracket])) {
             if (is_array($_POST[$nameWithoutBracket])) {
                 $formFields[$name]['values'] = $_POST[$nameWithoutBracket];
@@ -124,75 +119,57 @@ if (isset($_POST['submit'])) {
             $formFields[$name]['isValid'] = false;
         }
     }
-
     $formIsValid = !array_search(false, array_column($formFields, 'isValid'));
 }
-
 ?>
 <!DOCTYPE html>
 <html>
 
 <head>
-
+    <?php include 'include/navbar.php'; ?>
+    <?php include_once 'include/bootstrapLinkCss.php'; ?>
+    <style>
+        .invalid-feedback {
+            display: block;
+        }
+    </style>
 </head>
 
 <body>
-
     <div class="container">
-        <div class="alert alert-primary" role="alert">
-            TEST FORM TP
-        </div>
         <form action="form.php" method="post">
             <?php
-
             foreach ($formFields as $name => $field) {
                 $fieldString = '';
-
                 switch ($field['element']) {
                     case 'input':
                     $fieldString = writeInput($name, $field);
                     break;
+                }
                 writeFormRow($field['id'], $field['label'], $fieldString, $field);
             }
-            }
-
             ?>
-
             <div class="form-group row">
                 <div class="col-sm-3"></div>
                 <div class="col-sm-9">
-                    <button type="submit" class="btn btn-primary" name="submit" value="submit">Soumettre</button>
+                    <button type="submit" class="btn btn-primary" name="submit" value="submit">Sauvegarder</button>
                 </div>
             </div>
-
         </form>
-
         <div>
-
-
             <?php if ($formIsValid): ?>
-
             <div class="alert alert-primary" role="alert">
                 Résultat de la soumission
             </div>
-
             <ul class="list-group">
                 <?php showResult($formFields); ?>
             </ul>
-
             <?php endif; ?>
         </div>
-
-
         <!-- liens just pour tester -->
         <p> <a href='login.php'> Aller LOGIN.php </a> </p>
         <p> <a href='index.php'> Aller INDEX.php </a> </p>
-
-
-
     </div>
-
-
 </body>
 
 </html>
