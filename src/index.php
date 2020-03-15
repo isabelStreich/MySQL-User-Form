@@ -25,30 +25,8 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td scope="row">AAAA</td>
-                    <td>BBBB</td>
-                    <td>@Courriel</td>
-                    <td>date création</td>
-                    <td>date de modification</td>
-                    <td>$icone</td>
-                </tr>
-                <tr>
-                    <td scope="row">CCCC</td>
-                    <td>DDDD</td>
-                    <td>@Courriel</td>
-                    <td>date création</td>
-                    <td>date de modification</td>
-                    <td>$icone</td>
-                </tr>
-                <tr>
-                    <td scope="row">EEEE</td>
-                    <td>FFFF</td>
-                    <td>@Courriel</td>
-                    <td>date création</td>
-                    <td>date de modification</td>
-                    <td>$icone</td>
-                </tr>
+
+
             </tbody>
         </table>
     </div>
