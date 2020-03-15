@@ -7,7 +7,7 @@
 
 <head>
     <?php include 'include/jumbotron.php'; ?>
-    <?php include 'include/bootstrapLinkCss.php'; ?>
+    <?php include_once 'include/bootstrapLinkCss.php'; ?>
 </head>
 
 <body>
