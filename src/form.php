@@ -185,6 +185,7 @@ if (isset($_POST['submit'])) {
 
 
         <!-- liens just pour tester -->
+        <p>on est dans form.php </p>
         <p> <a href='login.php'> Aller LOGIN.php </a> </p>
         <p> <a href='index.php'> Aller INDEX.php </a> </p>
 

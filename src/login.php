@@ -1,7 +1,19 @@
 <!-- LOGIN.PHP -->
 <?php session_start();
+$userName = 'admin@qqch.com';
+$password = 'admin';
+//$hash = password_hash($password);
+if (isset($_POST['userName']) and isset($_POST['password'])) {
+    $_SESSION['userName'] = $_POST['userName'];
+    $_SESSION['password'] = $_POST['password'];
 
-?>
+    header('Location: index.php');
+
+    // if (password_verify($password, $hash)) {
+//     echo 'Password is valid!';
+    // } else {
+//     echo 'Invalid password.';
+}?>
 <!DOCTYPE html>
 <html>
 
@@ -12,6 +24,7 @@
 </head>
 
 <body>
+
     <!-- CSS CONTAINER -->
     <div class="container">
 
@@ -19,10 +32,11 @@
         <p> <a href='index.php'> Aller INDEX.php </a> </p>
         <p> <a href='form.php'> Aller FORM.php </a> </p>
 
-
-
-
     </div>
 </body>
 
 </html>
+<?php
+// } else {
+//         header('Location: form.php');
+//     }

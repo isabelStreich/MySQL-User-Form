@@ -11,6 +11,7 @@
     <!-- CSS CONTAINER -->
     <div class="container">
         <!-- Content container here -->
+        <p>on est dans index.php </p>
 
         <p> <a href='login.php'> Aller LOGIN.php </a> </p>
         <p> <a href='form.php'> Aller FORM.php </a> </p>
