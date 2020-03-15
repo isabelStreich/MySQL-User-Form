@@ -66,6 +66,14 @@ function parseSingleValue($field)
 
     return $value;
 }
+function writeInput($name, $field)
+{
+    $type = $field['type'];
+    $id = $field['id'];
+    $value = parseSingleValue($field);
+
+    return "<input type='$type' class='form-control' name='$name' id='$id' ".join(' ', $field['attributes'])." value='$value' >";
+}
 function writeInvalidMessage($field)
 {
     if (!$field['isValid']) {
@@ -132,7 +140,7 @@ if (isset($_POST['submit'])) {
 
     <div class="container">
         <div class="alert alert-primary" role="alert">
-            sTEST FORM TP
+            TEST FORM TP
         </div>
         <form action="form.php" method="post">
             <?php
@@ -159,7 +167,21 @@ if (isset($_POST['submit'])) {
 
         </form>
 
+        <div>
 
+
+            <?php if ($formIsValid): ?>
+
+            <div class="alert alert-primary" role="alert">
+                Résultat de la soumission
+            </div>
+
+            <ul class="list-group">
+                <?php showResult($formFields); ?>
+            </ul>
+
+            <?php endif; ?>
+        </div>
 
 
         <!-- liens just pour tester -->
