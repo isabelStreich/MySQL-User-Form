@@ -35,6 +35,16 @@ $formFields = [
         'isValid' => true,
         'errorMessage' => 'Message de validation',
     ],
+    'userName' => [
+        'element' => 'input',
+        'type' => 'text',
+        'id' => 'userName',
+        'label' => 'UserName',
+        'attributes' => [],
+        'values' => null,
+        'isValid' => true,
+        'errorMessage' => 'Message de validation',
+    ],
     'password' => [
         'element' => 'input',
         'type' => 'text',
@@ -51,9 +61,22 @@ $formFields = [
 <html>
 
 <head>
+    <?php include 'php'; ?>
 </head>
 
 <body>
+
+    <div class="container">
+
+
+        <p> <a href='login.php'> Aller LOGIN.php </a> </p>
+        <p> <a href='index.php'> Aller INDEX.php </a> </p>
+
+
+
+    </div>
+
+    <?php include 'php'; ?>
 </body>
 
 </html>
