@@ -126,16 +126,11 @@ if (isset($_POST['submit'])) {
 <html>
 
 <head>
-    <?php include 'include/navbar.php'; ?>
     <?php include_once 'include/bootstrapLinkCss.php'; ?>
-    <style>
-        .invalid-feedback {
-            display: block;
-        }
-    </style>
 </head>
 
 <body>
+    <?php include 'include/navbar.php'; ?>
     <div class="container">
         <form action="form.php" method="post">
             <?php
