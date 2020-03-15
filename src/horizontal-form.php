@@ -12,7 +12,7 @@
             <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
         </div>
     </div>
-    <fieldset class="form-group">
+    <!-- <fieldset class="form-group">
         <div class="row">
             <legend class="col-form-label col-sm-2 pt-0">Radios</legend>
             <div class="col-sm-10">
@@ -49,10 +49,10 @@
                 </label>
             </div>
         </div>
-    </div>
+    </div>-->
     <div class="form-group row">
         <div class="col-sm-10">
-            <button type="submit" class="btn btn-primary">Sign in</button>
+            <button type="submit" class="btn btn-primary">Sauvegarder</button>
         </div>
     </div>
 </form>
