@@ -29,3 +29,7 @@ CREATE TABLE tp_user
     modificationDate TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON
     UPDATE CURRENT_TIMESTAMP
     );
+-- Password generated with
+-- echo password_hash('admin', PASSWORD_BCRYPT);
+INSERT INTO tp_user (firstName, lastName, email, userName, userPassword)
+VALUES ('adminFirstName', 'adminLastName', 'admin@server.com', 'admin', 'password_default');

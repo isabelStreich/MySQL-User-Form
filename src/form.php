@@ -1,170 +1,144 @@
-<!-- FORM.PHP -->
-<?php session_start();
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-$formIsValid = false;
-$formFields = [
-    'name' => [
-        'element' => 'input',
-        'type' => 'text',
-        'id' => 'name',
-        'label' => 'Prénom',
-        'attributes' => [],
-        'values' => null,
-        'isValid' => true,
-        'errorMessage' => 'Message de validation',
-    ],
-    'surname' => [
-        'element' => 'input',
-        'type' => 'text',
-        'id' => 'surname',
-        'label' => 'Nom',
-        'attributes' => [],
-        'values' => null,
-        'isValid' => true,
-        'errorMessage' => 'Message de validation',
-    ],
-    'userEmail' => [
-        'element' => 'input',
-        'type' => 'email',
-        'id' => 'userEmail',
-        'label' => 'Courriel',
-        'attributes' => [],
-        'values' => null,
-        'isValid' => true,
-        'errorMessage' => 'Message de validation',
-    ],
-    'userName' => [
-        'element' => 'input',
-        'type' => 'text',
-        'id' => 'userName',
-        'label' => 'UserName',
-        'attributes' => [],
-        'values' => null,
-        'isValid' => true,
-        'errorMessage' => 'Message de validation',
-    ],
-    'password' => [
-        'element' => 'input',
-        'type' => 'text',
-        'id' => 'password',
-        'label' => 'Password',
-        'attributes' => [],
-        'values' => null,
-        'isValid' => true,
-        'errorMessage' => 'Message de validation',
-    ],
-];
-function parseSingleValue($field)
-{
-    $value = '';
-    if (isset($field['values']) and isset($field['values'][0])) {
-        $value = $field['values'][0];
-    }
+<?php
+ require 'database.php';
 
-    return $value;
-}
-function writeInput($name, $field)
-{
-    $type = $field['type'];
-    $id = $field['id'];
-    $value = parseSingleValue($field);
+ if (!empty($_POST) && isset($_POST['submit'])) { //on initialise nos messages d'erreurs;
+     $firstName = $lastName = $email = $userName = $userPassword = '';
+     $firstNameError = $lastNameError = $emailError = $userNameError = $userPasswordError = '';
+     // on recupère nos valeurs
+     $firstName = htmlentities(trim($_POST['firstName']));
+     $lastName = htmlentities(trim($_POST['lastName']));
+     $email = htmlentities(trim($_POST['email']));
+     $userName = htmlentities(trim($_POST['userName']));
+     $userPassword = htmlentities(trim($_POST['userPassword']));
+     //  $_SERVER['REQUEST_METHOD'] == 'POST' && if anterior
+     // on vérifie nos champs
+     $valid = true;
 
-    return "<input type='$type' class='form-control' name='$name' id='$id' ".join(' ', $field['attributes'])." value='$value' >";
-}
-function writeInvalidMessage($field)
-{
-    if (!$field['isValid']) {
-        echo '<div class="invalid-feedback">'.$field['errorMessage'].'</div>';
-    }
-}
-function writeFormRow($id, $label, $fieldString, $field)
-{
-    echo '<div class="form-group row">';
-    echo "  <label for='$id' class='col-sm-3 col-form-label'>$label</label>";
-    echo '  <div class="col-sm-9">';
-    echo $fieldString;
-    writeInvalidMessage($field);
-    echo '  </div>';
-    echo '</div>';
-}
-function showResult($formFields)
-{
-    foreach ($formFields as $field) {
-        echo "<li class='list-group-item'>";
-        echo $field['label'];
-        echo '<ul>';
-        foreach ($field['values'] as $value) {
-            echo "<li>$value</li>";
-        }
-        echo '</ul>';
-        echo '</li>';
-    }
-}
-// Détecte si le formulaire a été soumis
-if (isset($_POST['submit'])) {
-    foreach ($formFields as $name => $field) {
-        $nameWithoutBracket = rtrim($name, '[]');
-        if (isset($_POST[$nameWithoutBracket])) {
-            if (is_array($_POST[$nameWithoutBracket])) {
-                $formFields[$name]['values'] = $_POST[$nameWithoutBracket];
-                $formFields[$name]['isValid'] = (bool) !empty(array_values($_POST[$nameWithoutBracket]));
-            } else {
-                $formFields[$name]['values'] = [$_POST[$nameWithoutBracket]];
-                $formFields[$name]['isValid'] = (bool) !empty($_POST[$nameWithoutBracket]);
-            }
-        } else {
-            $formFields[$name]['values'] = [];
-            $formFields[$name]['isValid'] = false;
-        }
-    }
-    $formIsValid = !array_search(false, array_column($formFields, 'isValid'));
-}
+     if (empty($firstName)) {
+         $firstNameError = 'Please enter Name';
+         $valid = false;
+     } elseif (!preg_match('/^[a-zA-Z ]*$/', $firstName)) {
+         $firstNameError = 'Only letters and white space allowed';
+     }
+     if (empty($lastName)) {
+         $lastNameError = 'Please enter firstname';
+         $valid = false;
+     } elseif (!preg_match('/^[a-zA-Z ]*$/', $lastName)) {
+         $lastNameError = 'Only letters and white space allowed';
+     }
+     if (empty($email)) {
+         $emailError = 'Please enter Email Address';
+         $valid = false;
+     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+         $emailError = 'Please enter a valid Email Address';
+         $valid = false;
+     }
+     if (empty($userName)) {
+         $userNameError = 'Please enter your user name';
+         $valid = false;
+     }
+     if (empty($userPassword)) {
+         $userPasswordError = 'Please enter your user user Password';
+         $valid = false;
+     }
+
+     // si les données sont présentes et bonnes, on se connecte à la base
+     //  if ($valid) {
+     $pdo = Database::connect();
+     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+     $sql = 'INSERT INTO `tp_user`(`firstName`, `lastName`, `email`, `userName`, `userPassword`) values( ?, ?, ? , ? , ? )';
+     $q = $pdo->prepare($sql);
+     $q->execute([$firstName, $lastName, $email, $userName, $userPassword]);
+     Database::disconnect();
+     header('Location: index.php');
+     //  }
+ }
 ?>
 <!DOCTYPE html>
 <html>
 
 <head>
+    <!-- <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Crud</title>
+        	<link href="css/bootstrap.min.css" rel="stylesheet">
+        <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-wp-preserve="%3Cscript%20src%3D%22js%2Fbootstrap.js%22%3E%3C%2Fscript%3E" data-mce-resize="false" data-mce-placeholder="1" class="mce-object" width="20" height="20" alt="<script>" title="<script>" />
+         -->
     <?php include_once 'include/bootstrapLinkCss.php'; ?>
 </head>
 
 <body>
-    <?php include 'include/navbar.php'; ?>
+
     <div class="container">
-        <form action="form.php" method="post">
-            <?php
-            foreach ($formFields as $name => $field) {
-                $fieldString = '';
-                switch ($field['element']) {
-                    case 'input':
-                    $fieldString = writeInput($name, $field);
-                    break;
-                }
-                writeFormRow($field['id'], $field['label'], $fieldString, $field);
-            }
-            ?>
-            <div class="form-group row">
-                <div class="col-sm-3"></div>
-                <div class="col-sm-9">
-                    <button type="submit" class="btn btn-primary" name="submit" value="submit">Sauvegarder</button>
+        <div class="row">
+
+            <br />
+            <h3>Ajouter un contact</h3>
+        </div>
+        <form method="post" action="form.php">
+            <div
+                class="control-group <?php echo !empty($firstNameError) ? 'error' : ''; ?>">
+                <label class="control-label">firstName</label>
+                <div class="controls">
+                    <input name="firstName" type="text"
+                        value="<?php echo !empty($firstName) ? $firstName : ''; ?>">
+                    <?php if (!empty($firstNameError)): ?>
+                    <span class="help-inline"><?php echo $firstNameError; ?></span>
+                    <?php endif; ?>
                 </div>
             </div>
-        </form>
-        <div>
-            <?php if ($formIsValid): ?>
-            <div class="alert alert-primary" role="alert">
-                Résultat de la soumission
+
+            <div
+                class="control-group<?php echo !empty($lastNameError) ? 'error' : ''; ?>">
+                <label class="control-label">lastName</label>
+                <div class="controls">
+                    <input type="text" name="lastName"
+                        value="<?php echo !empty($lastName) ? $lastName : ''; ?>">
+                    <?php if (!empty($lastNameError)):?>
+                    <span class="help-inline"><?php echo $lastNameError; ?></span>
+                    <?php endif; ?>
+                </div>
             </div>
-            <ul class="list-group">
-                <?php showResult($formFields); ?>
-            </ul>
-            <?php endif; ?>
-        </div>
-        <!-- liens just pour tester -->
-        <p> <a href='login.php'> Aller LOGIN.php </a> </p>
-        <p> <a href='index.php'> Aller INDEX.php </a> </p>
+            <div
+                class="control-group <?php echo !empty($emailError) ? 'error' : ''; ?>">
+                <label class="control-label">Email Address</label>
+                <div class="controls">
+                    <input name="email" type="text"
+                        value="<?php echo !empty($email) ? $email : ''; ?>">
+                    <?php if (!empty($emailError)): ?>
+                    <span class="help-inline"><?php echo $emailError; ?></span>
+                    <?php endif; ?>
+                </div>
+            </div>
+            <div
+                class="control-group <?php echo !empty($userNameError) ? 'error' : ''; ?>">
+                <label class="control-label">userName</label>
+                <div class="controls">
+                    <input name="userName" type="text"
+                        value="<?php echo !empty($userName) ? $userName : ''; ?>">
+                    <?php if (!empty($userNameError)): ?>
+                    <span class="help-inline"><?php echo $userNameError; ?></span>
+                    <?php endif; ?>
+                </div>
+            </div>
+            <div
+                class="control-group <?php echo !empty($userPasswordError) ? 'error' : ''; ?>">
+                <label class="control-label">user password</label>
+                <div class="controls">
+                    <input name="userPassword" type="text"
+                        value="<?php echo !empty($userPassword) ? $userPassword : ''; ?>">
+                    <?php if (!empty($userNameError)): ?>
+                    <span class="help-inline"><?php echo $userPasswordError; ?></span>
+                    <?php endif; ?>
+                </div>
+            </div>
+            <div class="form-actions">
+                <input type="submit" class="btn btn-success" name="submit" value="submit">
+            </div>
+            <a class="btn" href="login.php">Retour</a>
     </div>
+    </form>
+    </div>
+
 </body>
 
 </html>
