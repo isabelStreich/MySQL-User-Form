@@ -17,5 +17,5 @@
     </div>
     <div class="form-group row">
         <div class="col-sm-10">
-            <input type="submit" value="Connexion" class="btn btn-primary">
+            <input type="submit" value="Login" class="btn btn-primary">
 </form>

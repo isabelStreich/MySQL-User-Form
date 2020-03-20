@@ -6,11 +6,6 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <!-- <li class="nav-item active">
-                <a class="nav-link" href="">Ajouter <span class="sr-only"></span></a>
-            </li> -->
-        </ul>
         <div class="form-inline my-2 my-lg-0" class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="nav-link" href="logout.php">Logout</a>
         </div>

@@ -41,7 +41,6 @@
          $userPasswordError = 'Please enter your user user Password';
          $valid = false;
      }
-
      // si les données sont présentes et bonnes, on se connecte à la base
      //  if ($valid) {
      $pdo = Database::connect();
@@ -58,12 +57,8 @@
 <html>
 
 <head>
-    <!-- <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Crud</title>
-        	<link href="css/bootstrap.min.css" rel="stylesheet">
-        <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-wp-preserve="%3Cscript%20src%3D%22js%2Fbootstrap.js%22%3E%3C%2Fscript%3E" data-mce-resize="false" data-mce-placeholder="1" class="mce-object" width="20" height="20" alt="<script>" title="<script>" />
-         -->
     <?php include_once 'include/bootstrapLinkCss.php'; ?>
+
 </head>
 
 <body>
@@ -71,14 +66,16 @@
     <div class="container">
         <div class="row">
 
-            <br />
+
             <h3>Ajouter un contact</h3>
+
         </div>
         <form method="post" action="form.php">
+
             <div
-                class="control-group <?php echo !empty($firstNameError) ? 'error' : ''; ?>">
-                <label class="control-label">firstName</label>
-                <div class="controls">
+                class="form-group row  <?php echo !empty($firstNameError) ? 'error' : ''; ?>">
+                <label class="col-sm-2 col-form-label">firstName</label>
+                <div class="col-sm-10">
                     <input name="firstName" type="text"
                         value="<?php echo !empty($firstName) ? $firstName : ''; ?>">
                     <?php if (!empty($firstNameError)): ?>
@@ -88,9 +85,9 @@
             </div>
 
             <div
-                class="control-group<?php echo !empty($lastNameError) ? 'error' : ''; ?>">
-                <label class="control-label">lastName</label>
-                <div class="controls">
+                class="form-group row <?php echo !empty($lastNameError) ? 'error' : ''; ?>">
+                <label class="col-sm-2 col-form-label">lastName</label>
+                <div class="col-sm-10">
                     <input type="text" name="lastName"
                         value="<?php echo !empty($lastName) ? $lastName : ''; ?>">
                     <?php if (!empty($lastNameError)):?>
@@ -99,9 +96,9 @@
                 </div>
             </div>
             <div
-                class="control-group <?php echo !empty($emailError) ? 'error' : ''; ?>">
-                <label class="control-label">Email Address</label>
-                <div class="controls">
+                class="form-group row  <?php echo !empty($emailError) ? 'error' : ''; ?>">
+                <label class="col-sm-2 col-form-label">Email Address</label>
+                <div class="col-sm-10">
                     <input name="email" type="text"
                         value="<?php echo !empty($email) ? $email : ''; ?>">
                     <?php if (!empty($emailError)): ?>
@@ -110,9 +107,9 @@
                 </div>
             </div>
             <div
-                class="control-group <?php echo !empty($userNameError) ? 'error' : ''; ?>">
-                <label class="control-label">userName</label>
-                <div class="controls">
+                class="form-group row  <?php echo !empty($userNameError) ? 'error' : ''; ?>">
+                <label class="col-sm-2 col-form-label">userName</label>
+                <div class="col-sm-10">
                     <input name="userName" type="text"
                         value="<?php echo !empty($userName) ? $userName : ''; ?>">
                     <?php if (!empty($userNameError)): ?>
@@ -121,9 +118,9 @@
                 </div>
             </div>
             <div
-                class="control-group <?php echo !empty($userPasswordError) ? 'error' : ''; ?>">
-                <label class="control-label">user password</label>
-                <div class="controls">
+                class="form-group row  <?php echo !empty($userPasswordError) ? 'error' : ''; ?>">
+                <label class="col-sm-2 col-form-label">user password</label>
+                <div class="col-sm-10">
                     <input name="userPassword" type="text"
                         value="<?php echo !empty($userPassword) ? $userPassword : ''; ?>">
                     <?php if (!empty($userNameError)): ?>

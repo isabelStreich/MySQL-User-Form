@@ -18,8 +18,6 @@ if (isset($_POST['userName']) && isset($_POST['userPassword'])) {
         // Le visiteur n'a pas été reconnu comme étant membre de notre site
         header('location: form.php');
     }
-    // } else {
-//     echo 'Les variables du formulaire ne sont pas déclarées.';
 }?>
 <!DOCTYPE html>
 <html>
@@ -33,18 +31,9 @@ if (isset($_POST['userName']) && isset($_POST['userPassword'])) {
 <body>
     <div class="container">
 
-        <!-- Content container here -->
-        <p> <a href='index.php'> Aller INDEX.php </a> </p>
-        <p> <a href='form.php'> Aller FORM.php </a> </p>
-
-        <p> <a href='src\logintest\index.php'> Aller logintestINDEX.php </a> </p>
-        <p> <a href='src\logintest\entry.php'> Aller logintest login.php </a> </p>
 
     </div>
 </body>
 
 </html>
 <?php
-// } else {
-//         header('Location: form.php');
-//     }

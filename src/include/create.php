@@ -1,4 +1,4 @@
-<h2>Add a user</h2>
+<!-- <h2>Add a user</h2>
 
 <form method="post">
     <label for="firstname">First Name</label>
@@ -14,4 +14,4 @@
     <input type="submit" name="submit" value="Submit">
 </form>
 
-<a href="index.php">Back to home</a>
+<a href="index.php">Back to home</a> -->
