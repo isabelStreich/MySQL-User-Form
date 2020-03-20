@@ -90,7 +90,7 @@ if (null == $id) {
                 <label class="control-label">Prenom</label>
                 <div class="controls">
                     <input name="firstName" type="text"
-                        value="<?php echo!empty($firstName) ? $firstName : ''; ?>">
+                        value="<?php echo!empty($firstName) ? $firstName : $data['firstName']; ?>">
                     <?php if (!empty($firstNameError)): ?><span
                         class="help-inline">
                         <?php echo $firstNameError; ?></span>
@@ -102,7 +102,7 @@ if (null == $id) {
                 <label class="control-label">Nom</label>
                 <div class="controls">
                     <input type="text" name="lastName"
-                        value="<?php echo!empty($lastName) ? $lastName : ''; ?>">
+                        value="<?php echo!empty($lastName) ? $lastName : $data['lastName']; ?>">
                     <?php if (!empty($lastNameError)): ?>
                     <span class="help-inline"><?php echo $lastNameError; ?></span>
                     <?php endif; ?>
@@ -113,7 +113,7 @@ if (null == $id) {
                 <label class="control-label">Courriel</label>
                 <div class="controls">
                     <input name="email" type="text"
-                        value="<?php echo!empty($email) ? $email : ''; ?>">
+                        value="<?php echo!empty($email) ? $email : $data['email']; ?>">
                     <?php if (!empty($emailError)): ?>
                     <span class="help-inline"><?php echo $emailError; ?></span>
                     <?php endif; ?>
@@ -124,7 +124,7 @@ if (null == $id) {
                 <label class="control-label">Username</label>
                 <div class="controls">
                     <input type="text" name="userName"
-                        value="<?php echo!empty($userName) ? $userName : ''; ?>">
+                        value="<?php echo!empty($userName) ? $userName : $data['userName']; ?>">
                     <?php if (!empty($userNameError)): ?>
                     <span class="help-inline"><?php echo $userNameError; ?></span>
                     <?php endif; ?>
@@ -135,7 +135,7 @@ if (null == $id) {
                 <label class="control-label">Password </label>
                 <div class="controls">
                     <input name="userPassword" type="text"
-                        value="<?php echo!empty($userPassword) ? $userPassword : ''; ?>">
+                        value="<?php echo!empty($userPassword) ? $userPassword : $data['userPassword']; ?>">
                     <?php if (!empty($telError)): ?>
                     <span class="help-inline"><?php echo $userPasswordError; ?></span>
                     <?php endif; ?>
