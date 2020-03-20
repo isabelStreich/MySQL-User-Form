@@ -10,7 +10,23 @@
      $email = htmlentities(trim($_POST['email']));
      $userName = htmlentities(trim($_POST['userName']));
      $userPassword = htmlentities(trim($_POST['userPassword']));
-     //  $_SERVER['REQUEST_METHOD'] == 'POST' && if anterior
+     //  password_hash
+     //  $hashPassword = password_hash($userPassword, PASSWORD_DEFAULT);
+
+     //  $pdo = Database::connect();
+     //  $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+     //  $sql = 'INSERT INTO `tp_user`(`firstName`, `lastName`, `email`, `userName`, `userPassword`) values( ?, ?, ? , ? , $hashPassword )';
+     //  $q = $pdo->prepare($sql);
+     //  $q->execute([$firstName, $lastName, $email, $userName, $hashPassword]);
+
+     //  $sql = "insert into users (first_name, last_name,email, password) value('".$firstName."', '".$surName."', '".$email."','".$hashPassword."')";
+     //  $result = mysqli_query($conn, $sql);
+     if ($result) {
+         echo 'Registration successfully';
+     } else {
+         echo 'Error';
+     }
+
      // on vérifie nos champs
      $valid = true;
 
@@ -57,8 +73,9 @@
 <html>
 
 <head>
-    <?php include_once 'include/bootstrapLinkCss.php'; ?>
 
+    <?php include_once 'include/bootstrapLinkCss.php'; ?>
+    <?php include 'include/navbar.php'; ?>
 </head>
 
 <body>
@@ -74,7 +91,7 @@
 
             <div
                 class="form-group row  <?php echo !empty($firstNameError) ? 'error' : ''; ?>">
-                <label class="col-sm-2 col-form-label">firstName</label>
+                <label class="col-sm-2 col-form-label">Prenom</label>
                 <div class="col-sm-10">
                     <input name="firstName" type="text"
                         value="<?php echo !empty($firstName) ? $firstName : ''; ?>">
@@ -86,7 +103,7 @@
 
             <div
                 class="form-group row <?php echo !empty($lastNameError) ? 'error' : ''; ?>">
-                <label class="col-sm-2 col-form-label">lastName</label>
+                <label class="col-sm-2 col-form-label">Nom</label>
                 <div class="col-sm-10">
                     <input type="text" name="lastName"
                         value="<?php echo !empty($lastName) ? $lastName : ''; ?>">
@@ -97,7 +114,7 @@
             </div>
             <div
                 class="form-group row  <?php echo !empty($emailError) ? 'error' : ''; ?>">
-                <label class="col-sm-2 col-form-label">Email Address</label>
+                <label class="col-sm-2 col-form-label">Courriel</label>
                 <div class="col-sm-10">
                     <input name="email" type="text"
                         value="<?php echo !empty($email) ? $email : ''; ?>">
@@ -108,7 +125,7 @@
             </div>
             <div
                 class="form-group row  <?php echo !empty($userNameError) ? 'error' : ''; ?>">
-                <label class="col-sm-2 col-form-label">userName</label>
+                <label class="col-sm-2 col-form-label">Username</label>
                 <div class="col-sm-10">
                     <input name="userName" type="text"
                         value="<?php echo !empty($userName) ? $userName : ''; ?>">
@@ -119,7 +136,7 @@
             </div>
             <div
                 class="form-group row  <?php echo !empty($userPasswordError) ? 'error' : ''; ?>">
-                <label class="col-sm-2 col-form-label">user password</label>
+                <label class="col-sm-2 col-form-label">User password</label>
                 <div class="col-sm-10">
                     <input name="userPassword" type="text"
                         value="<?php echo !empty($userPassword) ? $userPassword : ''; ?>">
