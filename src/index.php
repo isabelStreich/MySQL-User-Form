@@ -13,7 +13,8 @@ session_start();
     <?php include 'include/navbar.php'; ?>
     <!-- CSS CONTAINER -->
     <div class="container">
-        <?php echo '<h2>'.'Bienvenue '.$_SESSION['userName'].'!'.'</h2>'; ?>
+        <h2>Bienvenue!!! </h2>
+
         <!-- CSS TABLE -->
         <table class="table">
             <a href="form.php" class="btn btn-success"> Ajouter un user</a>

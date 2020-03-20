@@ -10,21 +10,13 @@
      $userName = htmlentities(trim($_POST['userName']));
      $userPassword = htmlentities(trim($_POST['userPassword']));
      //  password_hash
-     //  $hashPassword = password_hash($userPassword, PASSWORD_DEFAULT);
+     $hashPassword = password_hash($userPassword, PASSWORD_DEFAULT);
+     $pdo = Database::connect();
+     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+     $sql = 'INSERT INTO `tp_user`(`firstName`, `lastName`, `email`, `userName`, `userPassword`) values( ?, ?, ? , ? , ? )';
+     $q = $pdo->prepare($sql);
+     $q->execute([$firstName, $lastName, $email, $userName, $hashPassword]);
 
-     //  $pdo = Database::connect();
-     //  $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-     //  $sql = 'INSERT INTO `tp_user`(`firstName`, `lastName`, `email`, `userName`, `userPassword`) values( ?, ?, ? , ? , $hashPassword )';
-     //  $q = $pdo->prepare($sql);
-     //  $q->execute([$firstName, $lastName, $email, $userName, $hashPassword]);
-
-     //  $sql = "insert into users (first_name, last_name,email, password) value('".$firstName."', '".$surName."', '".$email."','".$hashPassword."')";
-     //  $result = mysqli_query($conn, $sql);
-     if ($result) {
-         echo 'Felisitation pour enregistrement!';
-     } else {
-         echo 'Error';
-     }
      // on vérifie nos champs
      $valid = true;
      if (empty($firstName)) {
@@ -42,9 +34,9 @@
      if (empty($email)) {
          $emailError = 'Entrer votre courriel';
          $valid = false;
-     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-         $emailError = 'Attention! Entrer votre courriel valide seulement!';
-         $valid = false;
+         //  } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    //      $emailError = 'Attention! Entrer votre courriel valide seulement!';
+    //      $valid = false;
      }
      if (empty($userName)) {
          $userNameError = 'Entrer votre username';
@@ -126,7 +118,7 @@
                 class="form-group row  <?php echo !empty($userPasswordError) ? 'error' : ''; ?>">
                 <label class="col-sm-2 col-form-label">User password</label>
                 <div class="col-sm-10">
-                    <input name="userPassword" type="text"
+                    <input name="userPassword" type="password"
                         value="<?php echo !empty($userPassword) ? $userPassword : ''; ?>">
                     <?php if (!empty($userNameError)): ?>
                     <span class="help-inline"><?php echo $userPasswordError; ?></span>
