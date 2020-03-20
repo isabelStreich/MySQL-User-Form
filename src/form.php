@@ -1,6 +1,5 @@
 <?php
  require 'database.php';
-
  if (!empty($_POST) && isset($_POST['submit'])) { //on initialise nos messages d'erreurs;
      $firstName = $lastName = $email = $userName = $userPassword = '';
      $firstNameError = $lastNameError = $emailError = $userNameError = $userPasswordError = '';
@@ -22,43 +21,39 @@
      //  $sql = "insert into users (first_name, last_name,email, password) value('".$firstName."', '".$surName."', '".$email."','".$hashPassword."')";
      //  $result = mysqli_query($conn, $sql);
      if ($result) {
-         echo 'Registration successfully';
+         echo 'Felisitation pour enregistrement!';
      } else {
          echo 'Error';
      }
-
      // on vérifie nos champs
      $valid = true;
-
      if (empty($firstName)) {
-         $firstNameError = 'Please enter Name';
+         $firstNameError = 'Entrer votre nom';
          $valid = false;
      } elseif (!preg_match('/^[a-zA-Z ]*$/', $firstName)) {
-         $firstNameError = 'Only letters and white space allowed';
+         $firstNameError = 'Attention! Des lettres et une espace seulement';
      }
      if (empty($lastName)) {
-         $lastNameError = 'Please enter firstname';
+         $lastNameError = 'Entrer votre prenom';
          $valid = false;
      } elseif (!preg_match('/^[a-zA-Z ]*$/', $lastName)) {
-         $lastNameError = 'Only letters and white space allowed';
+         $lastNameError = 'Attention! Des lettres et une espace seulement';
      }
      if (empty($email)) {
-         $emailError = 'Please enter Email Address';
+         $emailError = 'Entrer votre courriel';
          $valid = false;
      } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-         $emailError = 'Please enter a valid Email Address';
+         $emailError = 'Attention! Entrer votre courriel valide seulement!';
          $valid = false;
      }
      if (empty($userName)) {
-         $userNameError = 'Please enter your user name';
+         $userNameError = 'Entrer votre username';
          $valid = false;
      }
      if (empty($userPassword)) {
-         $userPasswordError = 'Please enter your user user Password';
+         $userPasswordError = 'Entrer votre password';
          $valid = false;
      }
-     // si les données sont présentes et bonnes, on se connecte à la base
-     //  if ($valid) {
      $pdo = Database::connect();
      $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
      $sql = 'INSERT INTO `tp_user`(`firstName`, `lastName`, `email`, `userName`, `userPassword`) values( ?, ?, ? , ? , ? )';
@@ -66,7 +61,6 @@
      $q->execute([$firstName, $lastName, $email, $userName, $userPassword]);
      Database::disconnect();
      header('Location: index.php');
-     //  }
  }
 ?>
 <!DOCTYPE html>
@@ -79,16 +73,11 @@
 </head>
 
 <body>
-
     <div class="container">
         <div class="row">
-
-
             <h3>Ajouter un contact</h3>
-
         </div>
         <form method="post" action="form.php">
-
             <div
                 class="form-group row  <?php echo !empty($firstNameError) ? 'error' : ''; ?>">
                 <label class="col-sm-2 col-form-label">Prenom</label>
@@ -100,7 +89,6 @@
                     <?php endif; ?>
                 </div>
             </div>
-
             <div
                 class="form-group row <?php echo !empty($lastNameError) ? 'error' : ''; ?>">
                 <label class="col-sm-2 col-form-label">Nom</label>
@@ -152,7 +140,6 @@
     </div>
     </form>
     </div>
-
 </body>
 
 </html>

@@ -35,26 +35,26 @@ if (null == $id) {
      //  On verifie que les champs sont remplis
      $valid = true;
      if (empty($firstName)) {
-         $firstNameError = 'Please enter Name';
+         $firstNameError = 'Entrer votre prenom';
          $valid = false;
      }
      if (empty($lastName)) {
-         $lastNameError = 'Please enter lastName';
+         $lastNameError = 'Entrer votre nom';
          $valid = false;
      }
      if (empty($email)) {
-         $emailError = 'Please enter Email Address';
+         $emailError = 'Entrer votre courriel';
          $valid = false;
      } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-         $emailError = 'Please enter a valid Email Address';
+         $emailError = 'Attention! Entrer votre courriel valide seulement';
          $valid = false;
      }
      if (empty($userName)) {
-         $userNameError = 'Please enter your userName';
+         $userNameError = 'Entrer votre username';
          $valid = false;
      }
      if (empty($userPassword)) {
-         $userPassword = 'Please enter userPassword';
+         $userPassword = 'Entrer votre password';
          $valid = false;
      }
      // mise à jour des donnés
@@ -86,9 +86,9 @@ if (null == $id) {
         <form method="post"
             action="update.php?id=<?php echo $id; ?>">
             <div
-                class="control-group <?php echo!empty($firstNameError) ? 'error' : ''; ?>">
-                <label class="control-label">Prenom</label>
-                <div class="controls">
+                class="form-group row <?php echo!empty($firstNameError) ? 'error' : ''; ?>">
+                <label class="col-sm-2 col-form-label">Prenom</label>
+                <div class="col-sm-10">
                     <input name="firstName" type="text"
                         value="<?php echo!empty($firstName) ? $firstName : $data['firstName']; ?>">
                     <?php if (!empty($firstNameError)): ?><span
@@ -98,9 +98,9 @@ if (null == $id) {
                 </div>
             </div>
             <div
-                class="control-group<?php echo!empty($lastNameError) ? 'error' : ''; ?>">
-                <label class="control-label">Nom</label>
-                <div class="controls">
+                class="form-group row<?php echo!empty($lastNameError) ? 'error' : ''; ?>">
+                <label class="col-sm-2 col-form-label">Nom</label>
+                <div class="col-sm-10">
                     <input type="text" name="lastName"
                         value="<?php echo!empty($lastName) ? $lastName : $data['lastName']; ?>">
                     <?php if (!empty($lastNameError)): ?>
@@ -109,9 +109,9 @@ if (null == $id) {
                 </div>
             </div>
             <div
-                class="control-group <?php echo!empty($emailError) ? 'error' : ''; ?>">
-                <label class="control-label">Courriel</label>
-                <div class="controls">
+                class="form-group row <?php echo!empty($emailError) ? 'error' : ''; ?>">
+                <label class="col-sm-2 col-form-label">Courriel</label>
+                <div class="col-sm-10">
                     <input name="email" type="text"
                         value="<?php echo!empty($email) ? $email : $data['email']; ?>">
                     <?php if (!empty($emailError)): ?>
@@ -120,9 +120,9 @@ if (null == $id) {
                 </div>
             </div>
             <div
-                class="control-group<?php echo!empty($userNameError) ? 'error' : ''; ?>">
-                <label class="control-label">Username</label>
-                <div class="controls">
+                class="form-group row <?php echo!empty($userNameError) ? 'error' : ''; ?>">
+                <label class="col-sm-2 col-form-label">Username</label>
+                <div class="col-sm-10">
                     <input type="text" name="userName"
                         value="<?php echo!empty($userName) ? $userName : $data['userName']; ?>">
                     <?php if (!empty($userNameError)): ?>
@@ -131,9 +131,9 @@ if (null == $id) {
                 </div>
             </div>
             <div
-                class="control-group <?php echo!empty($userPasswordError) ? 'error' : ''; ?>">
-                <label class="control-label">Password </label>
-                <div class="controls">
+                class="form-group row <?php echo!empty($userPasswordError) ? 'error' : ''; ?>">
+                <label class="col-sm-2 col-form-label">Password </label>
+                <div class="col-sm-10">
                     <input name="userPassword" type="text"
                         value="<?php echo!empty($userPassword) ? $userPassword : $data['userPassword']; ?>">
                     <?php if (!empty($telError)): ?>
@@ -141,6 +141,7 @@ if (null == $id) {
                     <?php endif; ?>
                 </div>
                 <div class="form-actions">
+                    <h5>Etes-vous sur?</h5>
                     <input type="submit" class="btn btn-success" name="submit" value="submit">
                     <a class="btn" href="index.php">Retour</a>
                 </div>

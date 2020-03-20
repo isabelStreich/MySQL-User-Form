@@ -14,10 +14,7 @@ if (!empty($_POST)) {
     Database::disconnect();
     header('Location: index.php');
 }
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -42,7 +39,6 @@ if (!empty($_POST)) {
                     <input type="submit" class="btn btn-success" href="index.php" name="submit" value="Non">
                 </div>
             </form>
-
 </body>
 
 </html>

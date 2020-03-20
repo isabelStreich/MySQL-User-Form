@@ -6,16 +6,14 @@ session_start();
 <html>
 
 <head>
-
     <?php include_once 'include/bootstrapLinkCss.php'; ?>
-
 </head>
 
 <body>
     <?php include 'include/navbar.php'; ?>
     <!-- CSS CONTAINER -->
     <div class="container">
-
+        <?php echo '<h2>'.'Bienvenue '.$_SESSION['userName'].'!'.'</h2>'; ?>
         <!-- CSS TABLE -->
         <table class="table">
             <a href="form.php" class="btn btn-success"> Ajouter un user</a>
@@ -42,7 +40,6 @@ foreach ($pdo->query($sql) as $row) {
     echo'<td>'.$row['email'].'</td>';
     echo'<td>'.$row['creationDate'].'</td>';
     echo'<td>'.$row['modificationDate'].'</td>';
-
     echo '<td>';
     echo '<a class="btn btn-success" href=update.php?id='.$row['id'].'">Update</a>'; // un autre td pour le bouton d'update
     echo '</td>';

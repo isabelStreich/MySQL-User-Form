@@ -1,4 +1,4 @@
- <!-- CSS TABLE -->
+ <!-- CSS TABLE
  <table class="table">
      <thead>
          <tr>
@@ -28,4 +28,4 @@
              <td>@twitter</td>
          </tr>
      </tbody>
- </table>
+ </table> -->
